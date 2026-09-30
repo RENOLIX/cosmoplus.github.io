@@ -64,7 +64,7 @@ async function loadShippingRates() {
       if (Number.isInteger(rate.home) && rate.home > 0) wilaya.home = rate.home;
       if (Number.isInteger(rate.desk) && rate.desk >= 0) wilaya.desk = rate.desk;
     });
-    render();
+    window.dispatchEvent(new Event('cosmoplus:shipping-updated'));
   } catch(error) { console.warn('Tarifs de livraison Firebase indisponibles.',error); }
 }
-document.addEventListener('DOMContentLoaded',loadShippingRates);
+document.addEventListener('DOMContentLoaded',() => { window.CP_SHIPPING_READY = loadShippingRates(); });
