@@ -5,7 +5,7 @@ const root = path.resolve(__dirname, '..');
 const source = JSON.parse(fs.readFileSync(path.join(root, 'woocommerce-products.json'), 'utf8'));
 const drafts = JSON.parse(fs.readFileSync(path.join(root, 'woocommerce-drafts.json'), 'utf8'));
 const decode = s => String(s || '').replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).replace(/&(?:amp|nbsp|quot|apos|lt|gt|rsquo|lsquo);/g, x => ({'&amp;':'&','&nbsp;':' ','&quot;':'"','&apos;':"'",'&lt;':'<','&gt;':'>','&rsquo;':'’','&lsquo;':'‘'}[x]));
-const localImage = src => src ? `/assets/products/${crypto.createHash('sha256').update(src).digest('hex').slice(0,20)}${path.extname(new URL(src).pathname).toLowerCase()}` : '';
+const localImage = src => src ? `/assets/products/${crypto.createHash('sha256').update(src).digest('hex').slice(0,20)}${path.extname(new URL(src).pathname).toLowerCase()}?v=products-1` : '';
 function category(p) {
   const hay = `${p.name} ${(p.categories || []).map(c => c.name).join(' ')}`.toLowerCase();
   if (/parfum|fragrance|brume/.test(hay)) return 'parfums';
