@@ -1,6 +1,6 @@
 # Cosmoplus
 
-Boutique de cosmétiques adaptée du site Khadidja, avec 129 produits publiés récupérés depuis le catalogue WooCommerce de Cosmoplus. Le code conserve la structure visuelle de la boutique de référence et affiche les produits, prix en DA et photos de fiches issus de Cosmoplus. Les 12 images de cartes et les bannières sont des créations éditoriales distinctes ; elles ne remplacent pas les photos des fiches produit.
+Boutique de cosmétiques adaptée du site Khadidja, avec 129 produits publiés et 2 brouillons conservés depuis WooCommerce. Le code conserve la structure visuelle de la boutique de référence et affiche les produits, prix en DA et photos de fiches issus de Cosmoplus. Les 12 images de cartes et les bannières sont des créations éditoriales distinctes ; elles ne remplacent pas les photos des fiches produit.
 
 ## Accès
 
@@ -16,7 +16,7 @@ Les frais de livraison affichés proviennent de `shipping-data.js`. Aucune inté
 
 ## Mise à jour du catalogue
 
-`woocommerce-products.json` contient l’export des 129 produits publiés de la boutique WordPress. `node scripts/build-catalog.cjs` régénère `cosmoplus-catalog.js` à partir de ce fichier. Ne lancez pas cette commande après des modifications de produits dans Firestore sans prévoir leur fusion ; les modifications en ligne restent indépendantes du fichier source.
+`woocommerce-products.json` contient les 129 produits publiés et `woocommerce-drafts.json` les 2 brouillons sans prix ni photo ; ceux-ci restent masqués dans la boutique. `node scripts/build-catalog.cjs` régénère `cosmoplus-catalog.js` à partir de ces fichiers. Ne lancez pas cette commande après des modifications de produits dans Firestore sans prévoir leur fusion ; les modifications en ligne restent indépendantes du fichier source.
 
 ## Développement
 

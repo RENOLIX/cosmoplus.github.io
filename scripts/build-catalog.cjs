@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const root = path.resolve(__dirname, '..');
 const source = JSON.parse(fs.readFileSync(path.join(root, 'woocommerce-products.json'), 'utf8'));
+const drafts = JSON.parse(fs.readFileSync(path.join(root, 'woocommerce-drafts.json'), 'utf8'));
 const decode = s => String(s || '').replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).replace(/&(?:amp|nbsp|quot|apos|lt|gt|rsquo|lsquo);/g, x => ({'&amp;':'&','&nbsp;':' ','&quot;':'"','&apos;':"'",'&lt;':'<','&gt;':'>','&rsquo;':'’','&lsquo;':'‘'}[x]));
 function category(p) {
   const hay = `${p.name} ${(p.categories || []).map(c => c.name).join(' ')}`.toLowerCase();
@@ -23,7 +24,11 @@ const products = source.map(p => ({
   brand: decode(p.brands?.[0]?.name || ''),
   _source: null
 }));
+for (const p of drafts) products.push({
+  id:`wc-${p.id}`,wpId:p.id,name:p.name,short:p.name,description:'',details:'',color:'',swatch:'#eee8e4',sizes:['TU'],
+  price:0,category:category(p),stock:null,images:[],cover:'',url:`/produit/?id=wc-${p.id}`,active:false,draft:true,brand:'',_source:null
+});
 products.forEach(p => p._source = {name:p.name,short:p.short,description:p.description,details:p.details,color:p.color});
-if (products.length !== 129 || products.some(p => !p.images.length || !Number.isFinite(p.price))) throw Error('Catalogue incomplet');
+if (products.length !== 131 || products.filter(p => p.active).some(p => !p.images.length || !Number.isFinite(p.price))) throw Error('Catalogue incomplet');
 fs.writeFileSync(path.join(root, 'cosmoplus-catalog.js'), `// Export WooCommerce public du 30 septembre 2026.\nwindow.COSMOPLUS_CATALOG = ${JSON.stringify(products)};\n`);
-console.log(`Generated ${products.length} products`);
+console.log(`Generated ${products.length} products, including ${drafts.length} hidden drafts`);
