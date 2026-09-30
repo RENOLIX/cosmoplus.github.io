@@ -1,0 +1,11 @@
+const CP_LEGAL = {
+  notices:['Mentions légales','COSMOPLUS exploite cette boutique de cosmétiques en ligne. Pour contacter la boutique : cosmoplus318@gmail.com ou 0550 28 18 52. Les informations relatives à l’immatriculation, au siège et à l’hébergeur doivent être complétées par le propriétaire avant ouverture commerciale.'],
+  terms:['Conditions générales de vente','Les prix sont affichés en dinars algériens. Le paiement s’effectue à la livraison. Le montant total, incluant les frais de livraison affichés avant confirmation, est enregistré avec la commande. La boutique contacte le client pour confirmer les modalités de livraison.'],
+  use:['Conditions d’utilisation','Le contenu du site présente les produits Cosmoplus. Les photos et descriptions des produits proviennent du catalogue de la boutique. Pour toute question ou correction, contactez cosmoplus318@gmail.com.'],
+  privacy:['Confidentialité','Les informations saisies lors de la commande sont utilisées pour la traiter et organiser la livraison. Le panier est conservé dans le navigateur. Les commandes sont enregistrées dans le projet Firebase de Cosmoplus et accessibles uniquement à l’équipe autorisée. Contact : cosmoplus318@gmail.com.'],
+  cookies:['Cookies','Le site utilise le stockage local nécessaire au panier. Firebase Authentication utilise les données nécessaires à la connexion et au passage de commande. Aucun suivi publicitaire n’est chargé par ce site.'],
+  delivery:['Livraison et retours','La livraison est proposée en Algérie, à domicile ou en bureau lorsque ce mode est disponible. Les frais sont affichés pendant la commande selon la wilaya choisie. Pour une demande de retour, contactez Cosmoplus au 0550 28 18 52.']
+};
+function legalPage(){const [title,text]=CP_LEGAL[document.body.dataset.legal]||CP_LEGAL.use;return `<main class="section-wrap extra-page info-page"><div class="page-intro"><span>COSMOPLUS</span><h1>${title}</h1><p>${text}</p></div><p><a href="mailto:cosmoplus318@gmail.com">cosmoplus318@gmail.com</a></p></main>`}
+function legalFooter(){return `<div class="footer-legal"><a href="/mentions-legales/">Mentions légales</a><a href="/conditions-generales-vente/">CGV</a><a href="/confidentialite/">Confidentialité</a><a href="/cookies/">Cookies</a></div>`}
+function setupLegal(){}

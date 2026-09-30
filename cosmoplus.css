@@ -1,0 +1,19 @@
+.brand-wordmark strong{font-size:clamp(16px,2vw,24px);letter-spacing:.08em}
+.brand-wordmark em{font-size:10px;letter-spacing:.38em}
+.cp-category-pills{display:flex;gap:10px;overflow:auto;padding:8px 0 24px;scrollbar-width:thin}
+.cp-category-pills a{white-space:nowrap;border:1px solid #d8d3ce;padding:10px 17px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.cp-category-pills a:hover{background:#111;color:#fff}
+.product-card{position:relative}
+.product-card .card-image img{object-fit:contain;background:#faf8f6}
+.cp-card-cart{position:absolute;right:12px;top:12px;display:grid;place-items:center;width:38px;height:38px;border:1px solid #ddd;background:#fff;border-radius:50%;cursor:pointer;box-shadow:0 2px 12px #0002}
+.cp-card-cart svg{width:18px;height:18px}
+.cp-card-cart:hover{background:#111;color:#fff}
+.cp-card-cart:disabled{opacity:.45;cursor:not-allowed}
+.main-image img,.thumb img,.cart-item img,.checkout-item img,.drawer-item img{object-fit:contain;background:#faf8f6}
+.cart-item>div{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.cart-item-name{display:block;line-height:1.45;overflow-wrap:anywhere}
+.cart-item>div>strong{display:block;margin-top:12px;font-size:16px}
+.cart-item-actions{margin-top:22px}
+.listing-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:850px){.listing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.listing-grid{gap:10px}.cp-card-cart{width:34px;height:34px;right:8px;top:8px}.cart-layout{grid-template-columns:1fr}.checkout-form,.summary{min-width:0}}
