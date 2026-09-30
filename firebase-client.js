@@ -21,12 +21,24 @@ async function loadCosmoplusCatalog() {
   render();
   try {
     const docs = await KB_DB.collection('products').get();
+    const imageIds = new Set();
+    for (const doc of docs.docs) {
+      const data = doc.data();
+      for (const ref of [data.cover,...(data.images || [])]) if (typeof ref === 'string' && ref.startsWith('cpimg:')) imageIds.add(ref.slice(6));
+    }
+    const imageUrls = new Map();
+    await Promise.all([...imageIds].map(async id => {
+      const imageDoc = await KB_DB.collection('productImages').doc(id).get();
+      if (imageDoc.exists) imageUrls.set(`cpimg:${id}`,imageDoc.data().data);
+    }));
     for (const doc of docs.docs) {
       const data = doc.data();
       const item = PRODUCTS.find(p => p.id === doc.id);
       const normalized = {
         ...item, ...data, id:doc.id,
-        images:Array.isArray(data.images) && data.images.length ? data.images : [data.cover || item?.cover].filter(Boolean),
+        images:(Array.isArray(data.images) ? data.images : [data.cover || item?.cover].filter(Boolean)).map(ref => imageUrls.get(ref) || ref),
+        cover:imageUrls.get(data.cover) || data.cover || '',
+        imageRef:data.cover || '',
         url:data.url || item?.url || `/produit/?id=${encodeURIComponent(doc.id)}`,
         sizes:['TU'], color:'', swatch:'#eee8e4'
       };
@@ -39,3 +51,20 @@ async function loadCosmoplusCatalog() {
   }
 }
 document.addEventListener('DOMContentLoaded', loadCosmoplusCatalog);
+
+async function loadShippingRates() {
+  if (typeof SHIPPING_WILAYAS === 'undefined') return;
+  try {
+    const doc = await KB_DB.collection('settings').doc('shipping').get();
+    if (!doc.exists) return;
+    const rates = doc.data().rates || {};
+    SHIPPING_WILAYAS.forEach((wilaya,index) => {
+      const rate = rates[String(index + 1).padStart(2,'0')];
+      if (!rate) return;
+      if (Number.isInteger(rate.home) && rate.home > 0) wilaya.home = rate.home;
+      if (Number.isInteger(rate.desk) && rate.desk >= 0) wilaya.desk = rate.desk;
+    });
+    render();
+  } catch(error) { console.warn('Tarifs de livraison Firebase indisponibles.',error); }
+}
+document.addEventListener('DOMContentLoaded',loadShippingRates);
