@@ -13,12 +13,12 @@ function walk(dir) {
       html = html.replace(`${prefix}assets/logo-transparent.png`, `${prefix}assets/cosmoplus-favicon.svg`);
       html = html.replace(/<script src="[^"]*meta-pixel\.js[^"]*" defer><\/script>/g, '');
       html = html.replace(/<script src="[^"]*checkout-live\.js[^"]*" defer><\/script>/g, '');
-      html = html.replace(/cosmoplus\.css\?v=\d+/g, 'cosmoplus.css?v=4').replace(/cosmoplus\.js\?v=\d+/g, 'cosmoplus.js?v=3').replaceAll('store.js?v=meta-1', 'store.js?v=cosmoplus-2').replace(/cosmoplus-catalog\.js\?v=\d+/g, 'cosmoplus-catalog.js?v=3').replaceAll('admin.js?v=catalog-1', 'admin.js?v=2');
+      html = html.replace(/cosmoplus\.css\?v=\d+/g, 'cosmoplus.css?v=4').replace(/cosmoplus\.js\?v=\d+/g, 'cosmoplus.js?v=4').replaceAll('store.js?v=meta-1', 'store.js?v=cosmoplus-2').replace(/cosmoplus-catalog\.js\?v=\d+/g, 'cosmoplus-catalog.js?v=4').replaceAll('admin.js?v=catalog-1', 'admin.js?v=2');
       if (!dir.endsWith(`${path.sep}admin`) && !html.includes('cosmoplus.css')) html = html.replace('</head>', `<link rel="stylesheet" href="${prefix}cosmoplus.css?v=4"></head>`);
       if (dir === root) html = html.replace('Cosmoplus | Robes de soirée pour femme', 'Cosmoplus | Soins, beauté et parfums').replace('Découvrez les robes de soirée Cosmoplus : modèles nude et bleu gris pour les grandes occasions.', 'Découvrez les produits de beauté Cosmoplus : soins, protection solaire, maquillage et parfums en Algérie.');
       if (dir.endsWith(`${path.sep}robes-de-soiree`)) html = html.replace('Robes de soirée | Cosmoplus', 'Tous les produits | Cosmoplus');
-      const target = `<script src="${prefix}firebase-client.js?v=catalog-1" defer></script>`;
-      const extra = dir.endsWith(`${path.sep}admin`) ? `<script src="${prefix}cosmoplus-catalog.js?v=2" defer></script>` : `<script src="${prefix}cosmoplus-catalog.js?v=2" defer></script><script src="${prefix}cosmoplus.js?v=3" defer></script>`;
+      const target = `<script src="${prefix}firebase-client.js?v=admin-4" defer></script>`;
+      const extra = dir.endsWith(`${path.sep}admin`) ? `<script src="${prefix}cosmoplus-catalog.js?v=4" defer></script>` : `<script src="${prefix}cosmoplus-catalog.js?v=4" defer></script><script src="${prefix}cosmoplus.js?v=4" defer></script>`;
       if (!html.includes('cosmoplus-catalog.js')) {
         if (!html.includes(target)) throw Error(`Missing script tag in ${full}`);
         html = html.replace(target, extra + target);
