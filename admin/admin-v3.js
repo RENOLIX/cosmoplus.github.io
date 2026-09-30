@@ -10,7 +10,7 @@ let currentUser = null, role = null, tab = 'dashboard', products = [], orders = 
 let editor = null, editorPhotos = [], orderId = null, unsubscribe = null, shippingRates = {};
 const imageCache = new Map();
 const imageId = ref => typeof ref === 'string' && ref.startsWith('cpimg:') ? ref.slice(6) : null;
-const photoUrl = ref => imageId(ref) ? (imageCache.get(imageId(ref)) || '') : (ref || '');
+const photoUrl = ref => imageId(ref) ? (imageCache.get(imageId(ref)) || '') : (window.COSMOPLUS_MEDIA_MAP?.[ref] || ref || '');
 const categoryName = id => CATEGORIES.find(item => item[0] === id)?.[1] || 'Beauté';
 const initialProduct = p => ({...p, cover:p.cover || p.images?.[0] || '', images:p.images || [p.cover].filter(Boolean)});
 

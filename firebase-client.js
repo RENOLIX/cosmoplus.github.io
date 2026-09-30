@@ -36,8 +36,8 @@ async function loadCosmoplusCatalog() {
       const item = PRODUCTS.find(p => p.id === doc.id);
       const normalized = {
         ...item, ...data, id:doc.id,
-        images:(Array.isArray(data.images) ? data.images : [data.cover || item?.cover].filter(Boolean)).map(ref => imageUrls.get(ref) || ref),
-        cover:imageUrls.get(data.cover) || data.cover || '',
+        images:(Array.isArray(data.images) ? data.images : [data.cover || item?.cover].filter(Boolean)).map(ref => imageUrls.get(ref) || window.COSMOPLUS_MEDIA_MAP?.[ref] || ref),
+        cover:imageUrls.get(data.cover) || window.COSMOPLUS_MEDIA_MAP?.[data.cover] || data.cover || '',
         imageRef:data.cover || '',
         url:data.url || item?.url || `/produit/?id=${encodeURIComponent(doc.id)}`,
         sizes:['TU'], color:'', swatch:'#eee8e4'
