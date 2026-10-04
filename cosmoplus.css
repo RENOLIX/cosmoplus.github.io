@@ -9,7 +9,7 @@
 .hero-slide[data-slide="0"]::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.08) 48%,rgba(0,0,0,.28));pointer-events:none}
 .hero-slide-copy{z-index:1}
 .product-card{position:relative}
-.product-card .card-image img{object-fit:contain;background:#faf8f6}
+.product-card .card-image img{object-fit:contain;object-position:center center;background:#faf8f6}
 .cp-card-cart{position:absolute;right:12px;top:12px;display:grid;place-items:center;width:38px;height:38px;border:1px solid #ddd;background:#fff;border-radius:50%;cursor:pointer;box-shadow:0 2px 12px #0002}
 .cp-card-cart svg{width:18px;height:18px}
 .cp-card-cart:hover{background:#111;color:#fff}
