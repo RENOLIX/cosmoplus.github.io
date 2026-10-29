@@ -131,6 +131,8 @@ function setupCart() { document.querySelectorAll('[data-cart-change]').forEach(b
 function setupCheckout() { const form=document.querySelector('#checkout-form');if(!form)return;form.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(form),items=cartItems();const values=Object.fromEntries(['name','phone','wilaya','commune','address','notes'].map(k=>[k,String(data.get(k)||'').trim()]));const lines=['Bonjour Khadidja Boutique, je souhaite commander :',...items.map(item=>{const p=byId(item.id);return `• ${p.name} — ${p.color}, taille ${item.size}, quantité ${item.quantity}`}),`Sous-total : ${money(cartTotal())}`,'Livraison : à confirmer',`Nom : ${values.name}`,`Téléphone : ${values.phone}`,`Wilaya : ${values.wilaya}`,`Commune : ${values.commune}`,`Adresse : ${values.address}`,`Précisions : ${values.notes||'Aucune'}`];const message=lines.join('\n'),result=document.querySelector('#checkout-result');result.hidden=false;result.innerHTML=`<strong>Votre demande est prête.</strong><p>Copiez ce récapitulatif. Aucun message n’a été envoyé à la boutique.</p><textarea readonly rows="12" id="order-message">${escapeHtml(message)}</textarea><button type="button" class="button button-outline" id="copy-order">COPIER LA DEMANDE</button>`;document.querySelector('#copy-order').addEventListener('click',async()=>{await navigator.clipboard.writeText(message);document.querySelector('#copy-order').textContent='DEMANDE COPIÉE'});result.scrollIntoView({behavior:'smooth',block:'center'})}); }
 function render() {
   const reopenDrawer=document.querySelector('#cart-drawer')?.classList.contains('open');
+  const previousCheckout=document.querySelector('#checkout-form');
+  const checkoutValues=previousCheckout?[...new FormData(previousCheckout)]:null;
   if(typeof prepareLocale==='function')prepareLocale();
   const page=document.body.dataset.page;
   const productId=document.body.dataset.productId || new URLSearchParams(location.search).get('id');
@@ -140,6 +142,11 @@ function render() {
   document.querySelector('#app').innerHTML=(shellHeader()+body+shellFooter()).replace(/(href|src)="\//g,`$1="${BASE}/`).replace(/url\('\/assets/g,`url('${BASE}/assets`);
   updateCount();setupShell();if(page==='home')setupHero();if(page==='product'&&p&&p.active!==false)setupProduct(p);if(page==='cart')setupCart();if(page==='checkout')setupCheckout();if(typeof setupPro==='function')setupPro();if(typeof setupLegal==='function')setupLegal();
   if(reopenDrawer)document.querySelector('#cart-toggle')?.click();
+  const checkout=document.querySelector('#checkout-form');
+  if(checkout&&checkoutValues){
+    for(const [name,value] of checkoutValues){const field=checkout.elements.namedItem(name);if(field){field.value=value;if(name==='wilaya'&&value)field.dispatchEvent(new Event('change',{bubbles:true}));}}
+    checkout.querySelector('[name="delivery"]:checked')?.dispatchEvent(new Event('change',{bubbles:true}));
+  }
   window.dispatchEvent(new CustomEvent('kb:render', {detail:{page,productId:p?.id || null}}));
 }
 document.addEventListener('DOMContentLoaded',()=>{

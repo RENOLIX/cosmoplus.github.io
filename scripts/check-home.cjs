@@ -100,4 +100,16 @@ vm.runInContext('setupShell=()=>{};setupCart=()=>{};setupPro=()=>{};setupLegal=(
 assert.equal(reopened,1,'Catalogue refresh reopens an already open drawer');
 drawerIsOpen=false;reopened=0;vm.runInContext('render()',context);
 assert.equal(reopened,0,'Catalogue refresh does not open a closed drawer');
+const savedCheckout=[['name','Client test'],['phone',''],['wilaya','15'],['commune','1601'],['delivery','desk'],['notes','À conserver']];
+const restoredFields=Object.fromEntries(savedCheckout.map(([name])=>[name,{value:'',dispatchEvent(){restoredEvents.push(name);}}]));
+const restoredEvents=[],oldCheckout={entries:savedCheckout},newCheckout={elements:{namedItem:name=>restoredFields[name]},querySelector:()=>restoredFields.delivery};
+let currentCheckout=oldCheckout;
+sandbox.FormData=class{constructor(form){this.entries=form.entries;}[Symbol.iterator](){return this.entries[Symbol.iterator]();}};
+sandbox.Event=class{constructor(type){this.type=type;}};
+Object.defineProperty(app,'innerHTML',{set(){currentCheckout=newCheckout;},configurable:true});
+document.body.dataset.page='checkout';
+document.querySelector=selector=>({'#app':app,'#checkout-form':currentCheckout,'#cart-drawer':existingDrawer,'#cart-toggle':toggle}[selector]||null);
+vm.runInContext('setupCheckout=()=>{};render()',context);
+for(const [name,value] of savedCheckout)assert.equal(restoredFields[name].value,value,`Checkout preserves ${name} during catalogue refresh`);
+assert.deepEqual(restoredEvents,['wilaya','delivery'],'Restore communes before recalculating shipping');
 console.log(`Storefront checks passed: ${assets} local image references, ${links} internal links, all 129 product pages, category/search/price filters, cart and checkout, four desktop/mobile campaigns and favorites.`);
