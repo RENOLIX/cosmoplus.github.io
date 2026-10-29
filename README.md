@@ -1,6 +1,8 @@
 # Cosmoplus
 
-Boutique de cosmétiques adaptée du site Khadidja, avec 129 produits publiés et 2 brouillons conservés depuis WooCommerce. Le code conserve la structure visuelle de la boutique de référence et affiche les produits, prix en DA et photos de fiches issus de Cosmoplus. Les 12 images de cartes et les bannières sont des créations éditoriales distinctes ; elles ne remplacent pas les photos des fiches produit.
+Boutique de cosmétiques Cosmoplus, avec 129 produits publiés et 2 brouillons conservés depuis WooCommerce. Le thème actuel reprend la présentation de Cosmetis sur l’accueil, le catalogue, les fiches produit, le panier, la commande et les pages d’information. Le catalogue, les prix en DA, les photos produit et les données Firebase restent ceux de Cosmoplus.
+
+Le carrousel de l’accueil contient quatre campagnes (beauté, K-beauty, solaire et parfums), chacune avec une image dédiée à l’ordinateur et une autre au téléphone. Les huit images se trouvent dans `assets/home/`. Les prompts de création sont conservés dans `assets/home/hero-prompts.json` et `assets/home/mobile-hero-prompt.txt`.
 
 ## Accès
 
@@ -20,4 +22,8 @@ Les frais de livraison affichés proviennent de `shipping-data.js`. Aucune inté
 
 ## Développement
 
-`node scripts/serve.cjs` sert le site en local. Le site statique se publie avec GitHub Pages à partir de la branche `main`, dossier racine. `node scripts/adapt-pages.cjs` insère les ressources Cosmoplus dans les pages copiées de Khadidja.
+`node scripts/serve.cjs` sert le site en local. Le site statique se publie avec GitHub Pages à partir de la branche `main`, dossier racine, sur `cosmoplus.store`.
+
+`home-cosmetis.js` et `home-cosmetis.css` définissent l’accueil, l’en-tête, le pied de page et les cartes produit partagés. `cosmetis-pages.js` et `cosmetis-pages.css` définissent les pages du catalogue et du parcours d’achat. `admin/cosmetis-admin.css` adapte l’apparence de l’administration.
+
+Après création ou adaptation d’une page HTML, exécuter `node scripts/apply-cosmetis-theme.cjs` pour y installer les ressources du thème. Vérifications : `node scripts/check-home.cjs`, `node scripts/check-local-links.cjs` et `git diff --check`.
