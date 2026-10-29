@@ -14,8 +14,8 @@ function walk(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
   if(!html.includes('cosmoplus.js?v='))continue;
   html=html.replace(/store\.js\?v=cosmoplus-[23]/g,'store.js?v=cosmoplus-4');
   html=html.replace(/<link[^>]+href="[^"]*(?:home-cosmetis|cosmetis-pages)\.css[^"]*"[^>]*>/g,'').replace(/<script[^>]+src="[^"]*(?:home-cosmetis|cosmetis-pages)\.js[^"]*"[^>]*><\/script>/g,'');
-  html=html.replace('</head>',`<link rel="stylesheet" href="${prefix}home-cosmetis.css?v=2"><link rel="stylesheet" href="${prefix}cosmetis-pages.css?v=1"></head>`);
-  html=html.replace(/(<script src="[^"]*firebase-client\.js[^>]*>)/,`<script src="${prefix}home-cosmetis.js?v=2" defer></script><script src="${prefix}cosmetis-pages.js?v=1" defer></script>$1`);
+  html=html.replace('</head>',`<link rel="stylesheet" href="${prefix}home-cosmetis.css?v=3"><link rel="stylesheet" href="${prefix}cosmetis-pages.css?v=1"></head>`);
+  html=html.replace(/(<script src="[^"]*firebase-client\.js[^>]*>)/,`<script src="${prefix}home-cosmetis.js?v=3" defer></script><script src="${prefix}cosmetis-pages.js?v=1" defer></script>$1`);
   fs.writeFileSync(full,html);count++;
 }}
 walk(root);console.log(`Shared theme installed on ${count} public pages and the admin.`);

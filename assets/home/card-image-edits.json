@@ -1,0 +1,78 @@
+{
+  "files": [
+    {
+      "path": "assets/home/routine-face-cosmoplus.webp",
+      "width": 1694,
+      "height": 929,
+      "bytes": 131706
+    },
+    {
+      "path": "assets/home/routine-hair-cosmoplus.webp",
+      "width": 1694,
+      "height": 929,
+      "bytes": 130512
+    },
+    {
+      "path": "assets/home/routine-sun-cosmoplus.webp",
+      "width": 1694,
+      "height": 929,
+      "bytes": 194908
+    },
+    {
+      "path": "assets/home/editorial-face-hd.webp",
+      "width": 1694,
+      "height": 929,
+      "bytes": 167916
+    },
+    {
+      "path": "assets/home/editorial-hair-hd.webp",
+      "width": 1693,
+      "height": 929,
+      "bytes": 223036
+    },
+    {
+      "path": "assets/home/editorial-body-hd.webp",
+      "width": 1694,
+      "height": 929,
+      "bytes": 177788
+    }
+  ],
+  "mode": "built-in image_gen",
+  "routine": [
+    {
+      "id": "face",
+      "words": "SKIN- and CARE",
+      "bg": "pale lavender",
+      "prompt": "Use case: text-localization. Edit target: the provided existing Cosmoplus website card image, original 547 by 300 landscape aspect ratio. Make ONLY these two localized typography edits: (1) replace the small black word 'cosmetis' near the top of the colored right panel with exactly 'cosmoplus' in a closely matching elegant bold black serif wordmark, same position and approximately the same height; (2) remove the small black oval badge containing the white word 'is' above the large headline, restoring the plain pale lavender background seamlessly. Keep the existing large SKIN- and CARE headline EXACTLY as it is: same letters, same solid/outline typography, same position, same scale. Preserve everything else as faithfully as possible: the same woman's identity, face, hair, skin, pose, clothing, photography, crop, the same product bottles/tubes, their labels and packaging, colors and shadows, flat background colors, panel boundary, margins and original composition. Do not add any other words, translations, badges, decorative elements or overlays. Do not redesign or regenerate the scene. Output one clean landscape image with exactly the original aspect ratio and no border."
+    },
+    {
+      "id": "hair",
+      "words": "HAIR- and CARE",
+      "bg": "mint turquoise",
+      "prompt": "Use case: text-localization. Edit target: the provided existing Cosmoplus website card image, original 547 by 300 landscape aspect ratio. Make ONLY these two localized typography edits: (1) replace the small black word 'cosmetis' near the top of the colored right panel with exactly 'cosmoplus' in a closely matching elegant bold black serif wordmark, same position and approximately the same height; (2) remove the small black oval badge containing the white word 'is' above the large headline, restoring the plain mint turquoise background seamlessly. Keep the existing large HAIR- and CARE headline EXACTLY as it is: same letters, same solid/outline typography, same position, same scale. Preserve everything else as faithfully as possible: the same woman's identity, face, hair, skin, pose, clothing, photography, crop, the same product bottles/tubes, their labels and packaging, colors and shadows, flat background colors, panel boundary, margins and original composition. Do not add any other words, translations, badges, decorative elements or overlays. Do not redesign or regenerate the scene. Output one clean landscape image with exactly the original aspect ratio and no border."
+    },
+    {
+      "id": "sun",
+      "words": "SUN- and CARE",
+      "bg": "pale peach",
+      "prompt": "Use case: text-localization. Edit target: the provided existing Cosmoplus website card image, original 547 by 300 landscape aspect ratio. Make ONLY these two localized typography edits: (1) replace the small black word 'cosmetis' near the top of the colored right panel with exactly 'cosmoplus' in a closely matching elegant bold black serif wordmark, same position and approximately the same height; (2) remove the small black oval badge containing the white word 'is' above the large headline, restoring the plain pale peach background seamlessly. Keep the existing large SUN- and CARE headline EXACTLY as it is: same letters, same solid/outline typography, same position, same scale. Preserve everything else as faithfully as possible: the same woman's identity, face, hair, skin, pose, clothing, photography, crop, the same product bottles/tubes, their labels and packaging, colors and shadows, flat background colors, panel boundary, margins and original composition. Do not add any other words, translations, badges, decorative elements or overlays. Do not redesign or regenerate the scene. Output one clean landscape image with exactly the original aspect ratio and no border."
+    }
+  ],
+  "editorial": [
+    {
+      "id": "face",
+      "description": "woman in a white robe, curly tied hair, yellow-green panel, CeraVe/Vichy/Uriage products and turquoise empty right half",
+      "prompt": "Use case: identity-preserve. Edit target: existing 547x300 landscape cosmetic editorial card. Make a faithful high-definition restoration of THIS EXACT IMAGE at 2735 by 1500 pixels, same aspect ratio. Preserve the exact composition: woman in a white robe, curly tied hair, yellow-green panel, CeraVe/Vichy/Uriage products and turquoise empty right half. Preserve the same woman's identity, expression, pose, hairstyle, clothes, crop and all product positions and packaging designs. Restore crisp natural photographic detail, clear hair strands, believable clean skin texture and crisp product packaging; remove low-resolution JPEG blur and compression artifacts. Preserve exactly the same flat background colors, dividing lines, lighting, scale, proportions and shadows. The right half must remain plain and empty so the website can place its existing title there. Do NOT add any title, text overlay, logo, watermark, new objects, extra products, people, scenery or design elements. Do not redesign. Only improve faithful image definition and photographic clarity. Deliver a sharp large landscape website image at 2735x1500."
+    },
+    {
+      "id": "hair",
+      "description": "woman in green sweater with flowing blonde hair, lavender panel, Kerastase/Garnier/Redken products and pale lilac empty right half",
+      "prompt": "Use case: identity-preserve. Edit target: existing 547x300 landscape cosmetic editorial card. Make a faithful high-definition restoration of THIS EXACT IMAGE at 2735 by 1500 pixels, same aspect ratio. Preserve the exact composition: woman in green sweater with flowing blonde hair, lavender panel, Kerastase/Garnier/Redken products and pale lilac empty right half. Preserve the same woman's identity, expression, pose, hairstyle, clothes, crop and all product positions and packaging designs. Restore crisp natural photographic detail, clear hair strands, believable clean skin texture and crisp product packaging; remove low-resolution JPEG blur and compression artifacts. Preserve exactly the same flat background colors, dividing lines, lighting, scale, proportions and shadows. The right half must remain plain and empty so the website can place its existing title there. Do NOT add any title, text overlay, logo, watermark, new objects, extra products, people, scenery or design elements. Do not redesign. Only improve faithful image definition and photographic clarity. Deliver a sharp large landscape website image at 2735x1500."
+    },
+    {
+      "id": "body",
+      "description": "smiling blonde woman in white, vivid turquoise panel, Bioderma/La Roche-Posay/CeraVe products and light turquoise empty right half",
+      "prompt": "Use case: identity-preserve. Edit target: existing 547x300 landscape cosmetic editorial card. Make a faithful high-definition restoration of THIS EXACT IMAGE at 2735 by 1500 pixels, same aspect ratio. Preserve the exact composition: smiling blonde woman in white, vivid turquoise panel, Bioderma/La Roche-Posay/CeraVe products and light turquoise empty right half. Preserve the same woman's identity, expression, pose, hairstyle, clothes, crop and all product positions and packaging designs. Restore crisp natural photographic detail, clear hair strands, believable clean skin texture and crisp product packaging; remove low-resolution JPEG blur and compression artifacts. Preserve exactly the same flat background colors, dividing lines, lighting, scale, proportions and shadows. The right half must remain plain and empty so the website can place its existing title there. Do NOT add any title, text overlay, logo, watermark, new objects, extra products, people, scenery or design elements. Do not redesign. Only improve faithful image definition and photographic clarity. Deliver a sharp large landscape website image at 2735x1500."
+    }
+  ]
+}

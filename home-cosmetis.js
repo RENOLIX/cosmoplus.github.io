@@ -36,8 +36,8 @@ productCard = function(p) {
 function cmProducts(title, list, id) {
   return `<section class="cm-product-section cm-wrap" aria-labelledby="${id}-title"><h2 id="${id}-title">${title}</h2><div class="cm-carousel"><button class="cm-carousel-arrow cm-prev" data-scroll="${id}" data-step="-1" aria-label="Produits précédents">${svg('chevron')}</button><div class="cm-product-rail" id="${id}">${list.map(productCard).join('')}</div><button class="cm-carousel-arrow cm-next" data-scroll="${id}" data-step="1" aria-label="Produits suivants">${svg('chevron')}</button></div></section>`;
 }
-function cmEditorial(cards) {
-  return `<section class="cm-editorials cm-wrap">${cards.map(([id,title,text,image,tag]) => `<article><a class="cm-editorial-image" href="${cmCollection(id)}"><img src="/assets/home/${image}" alt="Sélection ${cpSafe(title)}" loading="lazy"><div class="cm-editorial-overlay"><span>${tag}</span><strong>Les essentiels</strong><small>COSMOPLUS</small></div></a><h2><a href="${cmCollection(id)}">${title}</a></h2><p>${text}</p><a class="cm-button" href="${cmCollection(id)}">DÉCOUVRIR</a></article>`).join('')}</section>`;
+function cmEditorial(cards, overlay = true) {
+  return `<section class="cm-editorials cm-wrap">${cards.map(([id,title,text,image,tag]) => `<article><a class="cm-editorial-image" href="${cmCollection(id)}"><img src="/assets/home/${image}" alt="Sélection ${cpSafe(title)}" loading="lazy">${overlay?`<div class="cm-editorial-overlay"><span>${tag}</span><strong>Les essentiels</strong><small>COSMOPLUS</small></div>`:''}</a><h2><a href="${cmCollection(id)}">${title}</a></h2><p>${text}</p><a class="cm-button" href="${cmCollection(id)}">DÉCOUVRIR</a></article>`).join('')}</section>`;
 }
 function cmHeroImage(image, index, alt) {
   const mobile=image.replace(/\.(jpg|webp)$/,'-mobile.webp');
@@ -59,16 +59,16 @@ homePage = function() {
   <nav class="cm-category-rail cm-wrap" aria-label="Découvrir les catégories">${cmCategories.map(([id,label,img]) => `<a href="${cmCollection(id)}"><img src="${img ? `/assets/home/${img}` : cpSafe(cpImage(byId('wc-3247')))}" ${img ? '' : 'class="cm-perfume-category"'} alt="" loading="lazy"><span>${label}</span></a>`).join('')}</nav>
   <section class="cm-brand-section cm-wrap" id="marques"><h2>Votre boutique de cosmétiques et de beauté</h2><div class="cm-featured-brands">${brands.map(([label,q,img]) => `<article><a href="${cmSearch(q)}"><img src="/assets/home/${img}" alt="${label}" loading="lazy"></a><h3>${label}</h3><a class="cm-button" href="${cmSearch(q)}">DÉCOUVRIR</a></article>`).join('')}</div></section>
   ${cmEditorial([
-    ['soins-visage','Les essentiels visage','Trouvez le soin qui convient à votre peau et construisez votre routine beauté.','editorial-face.jpg','Soins visage'],
-    ['cheveux','Les essentiels cheveux','Découvrez notre sélection pour prendre soin de vos cheveux au quotidien.','editorial-hair.jpg','Cheveux'],
-    ['corps','Les essentiels corps','Hydratez, protégez et prenez soin de votre peau, de la tête aux pieds.','editorial-body.jpg','Corps & hygiène']
+    ['soins-visage','Les essentiels visage','Trouvez le soin qui convient à votre peau et construisez votre routine beauté.','editorial-face-hd.webp','Soins visage'],
+    ['cheveux','Les essentiels cheveux','Découvrez notre sélection pour prendre soin de vos cheveux au quotidien.','editorial-hair-hd.webp','Cheveux'],
+    ['corps','Les essentiels corps','Hydratez, protégez et prenez soin de votre peau, de la tête aux pieds.','editorial-body-hd.webp','Corps & hygiène']
   ])}
   ${cmProducts('Les tendances',trending,'cm-trending')}
   ${cmEditorial([
-    ['soins-visage','Hydratation & soins visage','Découvrez les soins hydratants et les sérums de notre catalogue pour votre routine quotidienne.','routine-face.jpg','Soins visage'],
-    ['cheveux','Soins des cheveux','Retrouvez les produits capillaires Cosmoplus et choisissez votre soin selon les besoins de vos cheveux.','routine-hair.jpg','Cheveux'],
-    ['solaires','Protection solaire','Protégez votre peau tout au long de l’année avec notre sélection de protections solaires.','routine-sun.jpg','Protection solaire']
-  ])}
+    ['soins-visage','Hydratation & soins visage','Découvrez les soins hydratants et les sérums de notre catalogue pour votre routine quotidienne.','routine-face-cosmoplus.webp','Soins visage'],
+    ['cheveux','Soins des cheveux','Retrouvez les produits capillaires Cosmoplus et choisissez votre soin selon les besoins de vos cheveux.','routine-hair-cosmoplus.webp','Cheveux'],
+    ['solaires','Protection solaire','Protégez votre peau tout au long de l’année avec notre sélection de protections solaires.','routine-sun-cosmoplus.webp','Protection solaire']
+  ],false)}
   ${cmProducts('Les incontournables',essentials,'cm-essentials')}
   ${cmProducts('Notre sélection',all.slice(0,10),'cm-selection')}
   <section class="cm-logo-strip cm-wrap" aria-label="Nos marques">${[['Avène','avene'],['Bioderma','bioderma'],['CeraVe','cerave'],['La Roche-Posay','laroche']].map(([brand,img]) => `<a href="${cmSearch(brand)}"><img src="/assets/home/logo-${img}.jpg" alt="${brand}" loading="lazy"></a>`).join('')}</section>
