@@ -2,7 +2,8 @@
 @font-face{font-family:CM Sans;src:url('assets/home/redhat-bold.woff2') format('woff2');font-weight:700;font-display:swap}
 @font-face{font-family:CM Serif;src:url('assets/home/playfair-bold.woff2') format('woff2');font-weight:700;font-display:swap}
 @font-face{font-family:CM Serif;src:url('assets/home/playfair-black.woff2') format('woff2');font-weight:900;font-display:swap}
-body{font-family:CM Sans,Arial,sans-serif;color:#14110e;background:#fff;font-size:15px;padding-bottom:0}
+:root{--cm-page-background:#fff5f7}
+body{font-family:CM Sans,Arial,sans-serif;color:#14110e;background:var(--cm-page-background);font-size:15px;padding-bottom:0}
 body button,body input{font-family:inherit}
 body .bottom-nav{display:none}
 .cm-wrap{width:calc(100% - 40px);max-width:1740px;margin-left:auto;margin-right:auto}
