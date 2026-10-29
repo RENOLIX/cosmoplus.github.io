@@ -91,4 +91,13 @@ previous.handlers.get('click')();assert.equal(active(),3,'Previous arrow wraps t
 hero.handlers.get('touchstart')({changedTouches:[{clientX:200,clientY:100}]});
 hero.handlers.get('touchend')({changedTouches:[{clientX:50,clientY:103}]});assert.equal(active(),0,'Phone swipe advances the carousel');
 assert(slides.slice(1).every(slide=>slide.inert&&slide.attributes['aria-hidden']==='true'),'Hidden campaigns are removed from keyboard focus');
+let reopened=0,drawerIsOpen=true;
+document.body.dataset.page='cart';
+const app={innerHTML:''},existingDrawer={classList:{contains:()=>drawerIsOpen}},toggle={click(){reopened++;}};
+document.querySelector=selector=>({'#app':app,'#cart-drawer':existingDrawer,'#cart-toggle':toggle}[selector]||null);
+document.querySelectorAll=()=>[];
+vm.runInContext('setupShell=()=>{};setupCart=()=>{};setupPro=()=>{};setupLegal=()=>{};render()',context);
+assert.equal(reopened,1,'Catalogue refresh reopens an already open drawer');
+drawerIsOpen=false;reopened=0;vm.runInContext('render()',context);
+assert.equal(reopened,0,'Catalogue refresh does not open a closed drawer');
 console.log(`Storefront checks passed: ${assets} local image references, ${links} internal links, all 129 product pages, category/search/price filters, cart and checkout, four desktop/mobile campaigns and favorites.`);
